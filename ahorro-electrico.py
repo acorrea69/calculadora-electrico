@@ -3,13 +3,13 @@ from urllib.parse import quote
 
 # >>> CAMBIÁ ESTE DATO POR EL TUYO <<<
 # Código de país + número, sin el 0 inicial, sin espacios ni signos. Ej: 595981123456
-NUMERO_WHATSAPP = "595XXXXXXXXX"
+NUMERO_WHATSAPP = "595985870756"
 
 st.set_page_config(page_title="Ahorro Auto Eléctrico vs Convencional", page_icon="🔋", layout="centered")
 
 st.title("🔋 Calculadora de Ahorro: Auto Eléctrico vs Convencional")
-st.caption("Paraguay — compará cuánto podrías ahorrar por mes cambiando a un auto eléctrico, "
-           "y cuánto de ese ahorro podría cubrir la cuota del auto nuevo.")
+st.caption("Compará cuánto podrías ahorrar por mes cambiando a un auto eléctrico, "
+           "y cuánto de ese ahorro podría cubrir la cuota de tu auto nuevo.")
 
 st.info("🚗 ¿Vendés autos eléctricos? Esta calculadora ayuda a tus clientes a decidirse. "
         "Al final de la página podés pedirla con la marca de tu negocio.")
@@ -33,7 +33,7 @@ with col1:
     precio_combustible = st.number_input("Precio del combustible (Gs/litro)", min_value=0.0, value=7800.0, step=50.0)
     consumo_combustible = st.number_input("Consumo (litros cada 100 km)", min_value=0.0, value=8.0, step=0.5)
 with col2:
-    mantenimiento_combustion = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=250000.0, step=10000.0,
+    mantenimiento_combustion = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=100000.0, step=10000.0,
                                                  help="Aceite, filtros, service, etc. prorrateado por mes")
 
 st.divider()
@@ -44,10 +44,10 @@ st.divider()
 st.subheader("⚡ Auto eléctrico")
 col3, col4 = st.columns(2)
 with col3:
-    precio_kwh = st.number_input("Precio del kWh (ANDE, Gs/kWh)", min_value=0.0, value=750.0, step=10.0)
+    precio_kwh = st.number_input("Precio del kWh (ANDE, Gs/kWh)", min_value=0.0, value=500.0, step=10.0)
     consumo_kwh = st.number_input("Consumo (kWh cada 100 km)", min_value=0.0, value=15.0, step=0.5)
 with col4:
-    mantenimiento_electrico = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=80000.0, step=10000.0,
+    mantenimiento_electrico = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=50000.0, step=10000.0,
                                                 help="Los EV no usan aceite ni tienen tantas piezas móviles")
 
 st.divider()
@@ -56,7 +56,7 @@ st.divider()
 # 4. Cuota del auto
 # ---------------------------------------------------------
 st.subheader("🚘 Financiamiento del auto eléctrico")
-cuota_auto = st.number_input("Cuota mensual estimada del auto eléctrico (Gs)", min_value=0.0, value=3000000.0, step=50000.0,
+cuota_auto = st.number_input("Cuota mensual estimada del auto eléctrico (Gs)", min_value=0.0, value=1500000.0, step=50000.0,
                              help="Poné la cuota de la cotización de financiamiento para ver qué porcentaje se paga solo con el ahorro")
 
 st.divider()
