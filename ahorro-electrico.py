@@ -1,10 +1,18 @@
 import streamlit as st
+from urllib.parse import quote
+
+# >>> CAMBIÁ ESTE DATO POR EL TUYO <<<
+# Código de país + número, sin el 0 inicial, sin espacios ni signos. Ej: 595981123456
+NUMERO_WHATSAPP = "595XXXXXXXXX"
 
 st.set_page_config(page_title="Ahorro Auto Eléctrico vs Convencional", page_icon="🔋", layout="centered")
 
 st.title("🔋 Calculadora de Ahorro: Auto Eléctrico vs Convencional")
 st.caption("Paraguay — compará cuánto podrías ahorrar por mes cambiando a un auto eléctrico, "
            "y cuánto de ese ahorro podría cubrir la cuota del auto nuevo.")
+
+st.info("🚗 ¿Vendés autos eléctricos? Esta calculadora ayuda a tus clientes a decidirse. "
+        "Al final de la página podés pedirla con la marca de tu negocio.")
 
 st.divider()
 
@@ -125,3 +133,12 @@ with c2:
 
 st.caption("Nota: esta calculadora usa valores promedio ingresados por el usuario y no considera variaciones "
            "en el precio del combustible, tarifas escalonadas de ANDE, depreciación del vehículo ni costos de seguro.")
+
+# ---------------------------------------------------------
+# Contacto
+# ---------------------------------------------------------
+st.divider()
+st.subheader("¿Querés esta calculadora con la marca de tu negocio?")
+st.write("La personalizo con tu logo, tus colores y tus modelos de autos, y la usan tus clientes desde tu web o tu WhatsApp.")
+texto_wa = quote("Hola, vi la calculadora de auto eléctrico y quiero saber más")
+st.link_button("💬 Escribime por WhatsApp", f"https://wa.me/{NUMERO_WHATSAPP}?text={texto_wa}")
