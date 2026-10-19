@@ -3,13 +3,16 @@ from urllib.parse import quote
 
 # >>> CAMBIÁ ESTE DATO POR EL TUYO <<<
 # Código de país + número, sin el 0 inicial, sin espacios ni signos. Ej: 595981123456
-NUMERO_WHATSAPP = "595985870756"
+NUMERO_WHATSAPP = "595XXXXXXXXX"
+
+def gs(valor):
+    return f"Gs {valor:,.0f}".replace(",", ".")
 
 st.set_page_config(page_title="Ahorro Auto Eléctrico vs Convencional", page_icon="🔋", layout="centered")
 
 st.title("🔋 Calculadora de Ahorro: Auto Eléctrico vs Convencional")
-st.caption("Compará cuánto podrías ahorrar por mes cambiando a un auto eléctrico, "
-           "y cuánto de ese ahorro podría cubrir la cuota de tu auto nuevo.")
+st.caption("Paraguay — compará cuánto podrías ahorrar por mes cambiando a un auto eléctrico, "
+           "y cuánto de ese ahorro podría cubrir la cuota del auto nuevo.")
 
 st.info("🚗 ¿Vendés autos eléctricos? Esta calculadora ayuda a tus clientes a decidirse. "
         "Al final de la página podés pedirla con la marca de tu negocio.")
@@ -30,11 +33,13 @@ st.divider()
 st.subheader("⛽ Auto a combustión")
 col1, col2 = st.columns(2)
 with col1:
-    precio_combustible = st.number_input("Precio del combustible (Gs/litro)", min_value=0.0, value=7800.0, step=50.0)
+    precio_combustible = st.number_input("Precio del combustible (Gs/litro)", min_value=0.0, value=7500.0, step=50.0)
+    st.caption(f"= {gs(precio_combustible)} por litro")
     consumo_combustible = st.number_input("Consumo (litros cada 100 km)", min_value=0.0, value=8.0, step=0.5)
 with col2:
-    mantenimiento_combustion = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=100000.0, step=10000.0,
+    mantenimiento_combustion = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=250000.0, step=10000.0,
                                                  help="Aceite, filtros, service, etc. prorrateado por mes")
+    st.caption(f"= {gs(mantenimiento_combustion)} por mes")
 
 st.divider()
 
@@ -45,10 +50,12 @@ st.subheader("⚡ Auto eléctrico")
 col3, col4 = st.columns(2)
 with col3:
     precio_kwh = st.number_input("Precio del kWh (ANDE, Gs/kWh)", min_value=0.0, value=500.0, step=10.0)
+    st.caption(f"= {gs(precio_kwh)} por kWh")
     consumo_kwh = st.number_input("Consumo (kWh cada 100 km)", min_value=0.0, value=15.0, step=0.5)
 with col4:
-    mantenimiento_electrico = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=50000.0, step=10000.0,
+    mantenimiento_electrico = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=80000.0, step=10000.0,
                                                 help="Los EV no usan aceite ni tienen tantas piezas móviles")
+    st.caption(f"= {gs(mantenimiento_electrico)} por mes")
 
 st.divider()
 
@@ -58,6 +65,7 @@ st.divider()
 st.subheader("🚘 Financiamiento del auto eléctrico")
 cuota_auto = st.number_input("Cuota mensual estimada del auto eléctrico (Gs)", min_value=0.0, value=1500000.0, step=50000.0,
                              help="Poné la cuota de la cotización de financiamiento para ver qué porcentaje se paga solo con el ahorro")
+st.caption(f"= {gs(cuota_auto)} por mes")
 
 st.divider()
 
@@ -87,9 +95,6 @@ with r2:
 st.markdown("### 💰 Ahorro mensual total")
 st.metric("Ahorro mensual (energía + mantenimiento)", f"Gs {ahorro_mensual_total:,.0f}".replace(",", "."),
           delta=f"Energía: Gs {ahorro_energia:,.0f} | Mantenimiento: Gs {ahorro_mantenimiento:,.0f}".replace(",", "."))
-
-def gs(valor):
-    return f"Gs {valor:,.0f}".replace(",", ".")
 
 if ahorro_mensual_total > 0:
     if cuota_auto > 0:
@@ -121,19 +126,6 @@ else:
              "Revisá el precio del kWh o el consumo eléctrico ingresado.")
 
 st.divider()
-
-# ---------------------------------------------------------
-# Ahorro acumulado a 12 y 24 meses
-# ---------------------------------------------------------
-st.subheader("📈 Ahorro acumulado")
-ahorro_12 = ahorro_mensual_total * 12
-ahorro_24 = ahorro_mensual_total * 24
-
-c1, c2 = st.columns(2)
-with c1:
-    st.metric("Ahorro acumulado a 12 meses", gs(ahorro_12))
-with c2:
-    st.metric("Ahorro acumulado a 24 meses", gs(ahorro_24))
 
 st.caption("Nota: esta calculadora usa valores promedio ingresados por el usuario y no considera variaciones "
            "en el precio del combustible, tarifas escalonadas de ANDE, depreciación del vehículo ni costos de seguro.")
