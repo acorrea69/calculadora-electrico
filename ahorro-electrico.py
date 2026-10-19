@@ -3,7 +3,7 @@ from urllib.parse import quote
 
 # >>> CAMBIÁ ESTE DATO POR EL TUYO <<<
 # Código de país + número, sin el 0 inicial, sin espacios ni signos. Ej: 595981123456
-NUMERO_WHATSAPP = "595XXXXXXXXX"
+NUMERO_WHATSAPP = "595985870756"
 
 def gs(valor):
     return f"Gs {valor:,.0f}".replace(",", ".")
@@ -37,7 +37,7 @@ with col1:
     st.caption(f"= {gs(precio_combustible)} por litro")
     consumo_combustible = st.number_input("Consumo (litros cada 100 km)", min_value=0.0, value=8.0, step=0.5)
 with col2:
-    mantenimiento_combustion = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=250000.0, step=10000.0,
+    mantenimiento_combustion = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=150000.0, step=10000.0,
                                                  help="Aceite, filtros, service, etc. prorrateado por mes")
     st.caption(f"= {gs(mantenimiento_combustion)} por mes")
 
@@ -53,7 +53,7 @@ with col3:
     st.caption(f"= {gs(precio_kwh)} por kWh")
     consumo_kwh = st.number_input("Consumo (kWh cada 100 km)", min_value=0.0, value=15.0, step=0.5)
 with col4:
-    mantenimiento_electrico = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=80000.0, step=10000.0,
+    mantenimiento_electrico = st.number_input("Mantenimiento mensual promedio (Gs)", min_value=0.0, value=50000.0, step=10000.0,
                                                 help="Los EV no usan aceite ni tienen tantas piezas móviles")
     st.caption(f"= {gs(mantenimiento_electrico)} por mes")
 
