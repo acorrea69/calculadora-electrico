@@ -11,7 +11,8 @@ def gs(valor):
 st.set_page_config(page_title="Ahorro Auto Eléctrico vs Convencional", page_icon="🔋", layout="centered")
 
 st.title("🔋 Calculadora de Ahorro: Auto Eléctrico vs Convencional")
-st.caption("Paraguay — compará cuánto podrías ahorrar por mes cambiando a un auto eléctrico, "
+st.caption("Si estás pensdando en cambiar de auto, "
+           "compará cuánto podrías ahorrar por mes cambiando a un auto eléctrico, "
            "y cuánto de ese ahorro podría cubrir la cuota del auto nuevo.")
 
 st.info("🚗 ¿Vendés autos eléctricos? Esta calculadora ayuda a tus clientes a decidirse. "
